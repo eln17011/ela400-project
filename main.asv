@@ -7,18 +7,23 @@ if isempty(webcameras)
 end
 
 if size(webcameras,1) == 3
-    mainfeed = webcam(char(webcameras(1)));
-    left = webcam(char(webcameras(2)));
-    right = webcam(char(webcameras(3)));
+  tic  
+  mainfeed = webcam(1);
+  left = webcam(2);
+  right = webcam(3);
+    while toc < 10
+        
+        liveimg = snapshot(mainfeed);
+        leftimg = rgb2gray(snapshot(left));
+        rightimg = rgb2gray(snapshot(right));
 
-    liveimg = snapshot(mainfeed);
-    leftimg = snapshot(left);
-    rightimg = snapshot(right);
-    
-    mask = createMask(leftimg,rightimg);
-    
-    final = immultiply(liveimg,mask);
-    
+        mask = createMask(leftimg,rightimg);
+
+        final = immultiply(liveimg,mask);
+        
+        imshow(final);
+        
+    end
 else
     msgbox('Please connect all 3 webcameras!') 
 end
