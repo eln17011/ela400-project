@@ -9,12 +9,12 @@ clear;clc;close all;
 %if size(webcameras,1) == 3
    
   mainfeed = webcam('USB Camera');
-  mainfeed.Resolution = '640x480';
+  mainfeed.Resolution = '1920x1080';
   left = webcam('USB2.0 PC CAMERA');
   right = webcam('Lenovo EasyCamera');
   tic 
   ind = 1;
-    while toc < 10
+    while toc < 6
         
         liveimg = snapshot(mainfeed);
         for i = 1:100000
